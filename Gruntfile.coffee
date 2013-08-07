@@ -11,12 +11,12 @@ module.exports = (grunt) ->
           keepalive: true
     watch:
       scripts:
-        files: ['./src/scripts/**/*.coffee', './lib/scripts/**/*.coffee']
+        files: ['src/scripts/**/*.coffee', 'lib/scripts/**/*.coffee']
         tasks: ['browserify']
       templates:
         files: [
-          './src/templates/**/*.mustache'
-          './lib/templates/**/*.mustache'
+          'src/templates/**/*.mustache'
+          'lib/templates/**/*.mustache'
         ]
         tasks: ['hogan', 'browserify']
       stylesheets:
@@ -47,15 +47,11 @@ module.exports = (grunt) ->
     less:
       main:
         files:
-          'dist/main.css': 'src/stylesheets/main.less'
-          'dist/demo.css': 'src/stylesheets/demo.less'
+          'dist/fishSanctuary.css': 'src/stylesheets/fishSanctuary.less'
     browserify:
-      demo:
-        src: 'src/scripts/demo.coffee'
-        dest: 'dist/demo.js'
-      generic:
-        src: 'src/scripts/generic.coffee'
-        dest: 'dist/generic.js'
+      fish:
+        src: 'src/scripts/fishSanctuary.coffee'
+        dest: 'dist/fishSanctuary.js'
       options:
         transform: ['coffeeify']
         debug: true
