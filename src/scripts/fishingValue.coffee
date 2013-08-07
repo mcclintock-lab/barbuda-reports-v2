@@ -5,6 +5,7 @@ class FishingValueTab extends ReportTab
   name: 'Fishing Value'
   className: 'fishingValue'
   template: templates.fishingValue
+  dependencies: ['FishingValue']
 
   render: () ->
     context =
