@@ -1,6 +1,12 @@
 ReportTab = require '../../lib/scripts/reportTab.coffee'
 templates = require '../templates/templates.js'
 enableLayerTogglers = require '../../lib/scripts/enableLayerTogglers.coffee'
+utils = require '../../lib/scripts/utils.coffee'
+
+# Diameter evaluation and visualization parameters
+RECOMMENDED_DIAMETER = 
+  min: 10
+  max: 20
 
 class OverviewTab extends ReportTab
   name: 'Overview'
@@ -9,14 +15,12 @@ class OverviewTab extends ReportTab
   dependencies: ['Diameter']
 
   render: () ->
-    DIAM_OK = @getFirstResult('Diameter', 'DIAM_OK')
-    MAX_DIAM = @getFirstResult('Diameter', 'MAX_DIAM')
-    MIN_DIAM = @getFirstResult('Diameter', 'MIN_DIAM')
+    MIN_DIAM = utils.round(@getFirstResult('Diameter', 'MIN_DIAM'), 2)
+    SQ_MILES = utils.round(@getFirstResult('Diameter', 'SQ_MILES'), 2)    
 
-    if DIAM_OK is 'true'
-      text = "This area meets diameter length recommendation."
-    else
-      text = "Fails to meet diameter length recommendation."
+    if MIN_DIAM > RECOMMENDED_DIAMETER.min
+      DIAM_OK = true
+
     context =
       sketch: @model.forTemplate()
       sketchClass: @sketchClass.forTemplate()
@@ -25,9 +29,9 @@ class OverviewTab extends ReportTab
       description: @model.getAttribute('DESCRIPTION')
       hasDescription: @model.getAttribute('DESCRIPTION')?.length > 0
       DIAM_OK: DIAM_OK
-      MAX_DIAM: MAX_DIAM
-      MIN_DIAM: MIN_DIAM
-      diameterText: text
+      SQ_MILES: SQ_MILES
+      DIAM: MIN_DIAM
+      MIN_DIAM: RECOMMENDED_DIAMETER.min
     
     @$el.html @template.render(context, templates)
     enableLayerTogglers(@$el)
