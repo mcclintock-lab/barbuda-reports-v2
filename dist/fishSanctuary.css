@@ -169,6 +169,10 @@
   padding: 10px 0;
   margin: 0;
 }
+.reportView .reportSection p.large {
+  font-size: 15px;
+  line-height: 19px;
+}
 .reportView .reportSection table {
   width: 100%;
   border: 1px solid #e1e1e1;
@@ -215,4 +219,8 @@
 }
 .reportView a[data-toggle-node][data-visible=true]:before {
   content: '☑';
+}
+.fishingValue [data-toggle-node] {
+  float: right;
+  margin-right: 10px;
 }
