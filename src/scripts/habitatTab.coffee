@@ -5,7 +5,8 @@ class HabitatTab extends ReportTab
   name: 'Habitat'
   className: 'habitat'
   template: templates.habitat
-
+  dependencies: ['BarbudaHabitat']
+  
   render: () ->
     context =
       sketch: @model.forTemplate()

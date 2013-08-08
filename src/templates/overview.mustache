@@ -5,19 +5,20 @@
   sketches of this type.
 </div>
 {{/sketchClass.deleted}}
+
+<div class="reportSection size {{^DIAM_OK}}warning{{/DIAM_OK}}">
+  <h4>Size</h4>
+  <p class="large">
+    This protected area has an area of <strong>{{SQ_MILES}} square miles</strong>.
+  </p>
+  <p>
+    Diameter (on smallest side): {{DIAM}}. Recommended > {{MIN_DIAM}}
+  </p>
+</div>
+
 {{#hasDescription}}
 <div class="reportSection">
   <h4>Description</h4>
   <p>{{description}}</p>
 </div>
 {{/hasDescription}}
-
-<div class="reportSection size">
-  <h4>Size</h4>
-  <p>
-    {{diameterText}}
-  </p>
-  <p>
-    min: {{MIN_DIAM}}, max: {{MAX_DIAM}}
-  </p>
-</div>
