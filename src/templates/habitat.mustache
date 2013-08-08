@@ -1,4 +1,21 @@
 <div class="reportSection">
   <h4>Habitat Representation</h4>
-  <p>stuff..</p>
+  <table>
+    <thead>
+      <tr>
+        <th>Habitat</th>
+        <th>% of Total Habitat</th>
+      </tr>
+    </thead>
+    <tbody>
+      {{#habitats}}
+      <tr><td>{{HabType}}</td><td>{{Percent}}</td></tr>
+      {{/habitats}}
+    </tbody>
+  </table>
+  <p>
+    Percentages shown represent the proportion of habitats available in 
+    Barbuda's entire 3 nautical mile boundary captured within this zone. <br>
+    <a href="#" data-toggle-node="51f5545c08dc4f5f2d216146">show habitats layer</a>
+  </p>
 </div>

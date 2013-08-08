@@ -6,14 +6,28 @@
 </div>
 {{/sketchClass.deleted}}
 
-<div class="reportSection size {{^DIAM_OK}}warning{{/DIAM_OK}}">
+<div class="reportSection size">
   <h4>Size</h4>
   <p class="large">
-    This protected area has an area of <strong>{{SQ_MILES}} square miles</strong>.
+    This protected area is <strong>{{SQ_MILES}} square miles</strong>.
   </p>
+</div>
+
+<div class="reportSection diameter {{^DIAM_OK}}warning{{/DIAM_OK}}">
+  <h4>Diameter</h4>
   <p>
-    Diameter (on smallest side): {{DIAM}}. Recommended > {{MIN_DIAM}}
+    The diameter of a zone significantly impacts  its conservation value. 
+    The recommended smallest diameter is between 10 and 20 km.
+    <strong>
+    {{^DIAM_OK}}
+    This design falls outside the recommendation at {{DIAM}} km.
+    {{/DIAM_OK}}
+    {{#DIAM_OK}}
+    This design fits within the recommendation at {{DIAM}} km.
+    {{/DIAM_OK}}
+    </strong>
   </p>
+  <div class="viz" style="position:relative;"></div>
 </div>
 
 {{#hasDescription}}

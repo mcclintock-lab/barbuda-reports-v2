@@ -224,3 +224,89 @@
   float: right;
   margin-right: 10px;
 }
+.habitat [data-toggle-node] {
+  top: 8px;
+}
+.overview .viz > div.range {
+  height: 15px;
+  float: left;
+  border-top: 1px solid rgba(0, 0, 0, 0.1);
+}
+.overview .viz > div.range.below {
+  background: #e5cace;
+  background-color: #e0c0c5;
+  background-image: -moz-linear-gradient(top, #ddb9be, #e5cace);
+  background-image: -webkit-gradient(linear, 0 0, 0 100%, from(#ddb9be), to(#e5cace));
+  background-image: -webkit-linear-gradient(top, #ddb9be, #e5cace);
+  background-image: -o-linear-gradient(top, #ddb9be, #e5cace);
+  background-image: linear-gradient(to bottom, #ddb9be, #e5cace);
+  background-repeat: repeat-x;
+  filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#ffddb9be', endColorstr='#ffe5cace', GradientType=0);
+}
+.overview .viz > div.range.recommended {
+  background: #9aba8c;
+  background-color: #89af79;
+  background-image: -moz-linear-gradient(top, #7ea76c, #9aba8c);
+  background-image: -webkit-gradient(linear, 0 0, 0 100%, from(#7ea76c), to(#9aba8c));
+  background-image: -webkit-linear-gradient(top, #7ea76c, #9aba8c);
+  background-image: -o-linear-gradient(top, #7ea76c, #9aba8c);
+  background-image: linear-gradient(to bottom, #7ea76c, #9aba8c);
+  background-repeat: repeat-x;
+  filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#ff7ea76c', endColorstr='#ff9aba8c', GradientType=0);
+}
+.overview .viz > div.range.above {
+  background: #b3cfa7;
+  background-color: #a2c493;
+  background-image: -moz-linear-gradient(top, #97bd86, #b3cfa7);
+  background-image: -webkit-gradient(linear, 0 0, 0 100%, from(#97bd86), to(#b3cfa7));
+  background-image: -webkit-linear-gradient(top, #97bd86, #b3cfa7);
+  background-image: -o-linear-gradient(top, #97bd86, #b3cfa7);
+  background-image: linear-gradient(to bottom, #97bd86, #b3cfa7);
+  background-repeat: repeat-x;
+  filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#ff97bd86', endColorstr='#ffb3cfa7', GradientType=0);
+}
+.overview .viz > div.range > span {
+  position: absolute;
+  top: 18px;
+  font-size: 11px;
+}
+.overview .viz > div.range > span span {
+  font-size: 10px;
+  display: block;
+  color: #888;
+  margin-top: -3px;
+}
+.overview .viz {
+  *zoom: 1;
+  margin-bottom: 50px;
+  margin-left: 20px;
+  margin-top: 20px;
+}
+.overview .viz:before,
+.overview .viz:after {
+  display: table;
+  content: "";
+  line-height: 0;
+}
+.overview .viz:after {
+  clear: both;
+}
+.overview .viz .diam {
+  position: absolute;
+  top: -20px;
+  background: transparent;
+  float: none;
+  line-height: 20px;
+  padding-left: 14px;
+  text-shadow: 1px 1px 1px rgba(0, 0, 0, 0.2);
+}
+.overview .viz .diam:before {
+  font-family: 'fontello';
+  content: '▾';
+  margin-right: 5px;
+  font-size: 28px;
+  position: absolute;
+  top: 3px;
+  left: -8px;
+  color: #4d4d4d;
+}
