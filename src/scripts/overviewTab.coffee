@@ -38,7 +38,7 @@ class OverviewTab extends ReportTab
     @drawViz(MIN_DIAM)
 
   drawViz: (diam) ->
-    unless !$.browser.msie or parseFloat($.browser.version) < 9
+    if window.d3
       el = @$('.viz')[0]
       console.log diam * 1.5
       maxScale = d3.max([RECOMMENDED_DIAMETER.max * 1.5, diam * 1.5])
