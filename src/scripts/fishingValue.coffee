@@ -7,6 +7,7 @@ class FishingValueTab extends ReportTab
   className: 'fishingValue'
   template: templates.fishingValue
   dependencies: ['FishingValue']
+  timeout: 60000
 
   render: () ->
     data = @results.get('data')

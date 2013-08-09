@@ -40,7 +40,6 @@ class OverviewTab extends ReportTab
   drawViz: (diam) ->
     if window.d3
       el = @$('.viz')[0]
-      console.log diam * 1.5
       maxScale = d3.max([RECOMMENDED_DIAMETER.max * 1.5, diam * 1.5])
       ranges = [
         {
@@ -78,7 +77,7 @@ class OverviewTab extends ReportTab
         .append("span")
           .text((d) -> d.name)
           .append("span")
-            .text((d) -> "#{d.start}-#{d.end}km")
+            .text((d) -> "#{d.start}-#{d.end} miles")
 
       chart.selectAll("div.diam")
         .data([diam])
