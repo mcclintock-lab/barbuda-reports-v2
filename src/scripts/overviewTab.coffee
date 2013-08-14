@@ -5,8 +5,8 @@ utils = require '../../lib/scripts/utils.coffee'
 
 # Diameter evaluation and visualization parameters
 RECOMMENDED_DIAMETER = 
-  min: 10
-  max: 20
+  min: 2
+  max: 3
 
 class OverviewTab extends ReportTab
   name: 'Overview'
@@ -40,7 +40,7 @@ class OverviewTab extends ReportTab
   drawViz: (diam) ->
     if window.d3
       el = @$('.viz')[0]
-      maxScale = d3.max([RECOMMENDED_DIAMETER.max * 1.5, diam * 1.5])
+      maxScale = d3.max([RECOMMENDED_DIAMETER.max * 1.2, diam * 1.2])
       ranges = [
         {
           name: 'Below recommended'
@@ -75,9 +75,13 @@ class OverviewTab extends ReportTab
         .style("width", (d) -> x(d.end - d.start) + 'px')
         .attr("class", (d) -> "range " + d.class)
         .append("span")
-          .text((d) -> d.name)
+          .text((d) -> if x(d.end - d.start) > 110 then d.name else '')
           .append("span")
-            .text((d) -> "#{d.start}-#{d.end} miles")
+            .text (d) ->
+              if d.class is 'above'
+                "> #{d.start} miles"
+              else
+                "#{d.start}-#{d.end} miles"
 
       chart.selectAll("div.diam")
         .data([diam])
