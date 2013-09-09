@@ -9,10 +9,11 @@ RECOMMENDED_DIAMETER =
   max: 3
 
 class OverviewTab extends ReportTab
-  name: 'Overview'
+  name: 'Size'
   className: 'overview'
   template: templates.overview
   dependencies: ['Diameter']
+  timeout: 20000
 
   render: () ->
     MIN_DIAM = utils.round(@getFirstResult('Diameter', 'MIN_DIAM'), 2)
