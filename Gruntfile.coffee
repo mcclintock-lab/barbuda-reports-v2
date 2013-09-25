@@ -48,18 +48,44 @@ module.exports = (grunt) ->
             .replace('node_modules/seasketch-reporting-api/templates/', '')
             .replace('.mustache', '')
     less:
-      report:
+      fishSanctuary:
         files:
-          'dist/report.css': 'stylesheets/report.less'
+          'dist/fishSanctuary.css': 'stylesheets/fishSanctuary.less'
+      aquaculture:
+        files:
+          'dist/aquaculture.css': 'stylesheets/aquaculture.less'
+      fishingPriority:
+        files:
+          'dist/fishingPriority.css': 'stylesheets/fishingPriority.less'
+      mooring:
+        files:
+          'dist/mooring.css': 'stylesheets/mooring.less'
+      proposal:
+        files:
+          'dist/proposal.css': 'stylesheets/proposal.less'
     browserify:
-      report:
-        src: 'scripts/report.coffee'
-        dest: 'dist/report.js'
+      fishSanctuary:
+        src: 'scripts/fishSanctuary.coffee'
+        dest: 'dist/fishSanctuary.js'
+      aquaculture:
+        src: 'scripts/aquaculture.coffee'
+        dest: 'dist/aquaculture.js'
+      fishingPriority:
+        src: 'scripts/fishingPriority.coffee'
+        dest: 'dist/fishingPriority.js'
+      mooring:
+        src: 'scripts/mooring.coffee'
+        dest: 'dist/mooring.js'
+      proposal:
+        src: 'scripts/proposal.coffee'
+        dest: 'dist/proposal.js'
       options:
         transform: ['coffeeify']
         debug: true
         alias: [
           'node_modules/seasketch-reporting-api/scripts/reportTab.coffee:reportTab'
+          'node_modules/seasketch-reporting-api/scripts/utils.coffee:api/utils'
+          'node_modules/seasketch-reporting-api/templates/templates.js:api/templates'
         ]
 
   grunt.loadNpmTasks('grunt-contrib-connect')
