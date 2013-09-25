@@ -1,6 +1,7 @@
 ReportTab = require 'reportTab'
 templates = require '../templates/templates.js'
 round = require('api/utils').round
+
 _partials = require 'api/templates'
 partials = []
 for key, val of _partials
@@ -28,5 +29,19 @@ class ArrayOverviewTab extends ReportTab
       SQ_MILES: round(SQ_MILES, 2)
     
     @$el.html @template.render(context, partials)
+
+    nodes = [@model]
+    @model.set 'open', true
+    nodes = nodes.concat @children
+    for node in nodes
+      node.set 'selected', false
+    TableOfContents = window.require('views/tableOfContents')
+    @toc = new TableOfContents(nodes)
+    @$('.tocContainer').append @toc.el
+    @toc.render()
+
+  remove: () ->
+    @toc?.remove()
+    super()
 
 module.exports = ArrayOverviewTab
