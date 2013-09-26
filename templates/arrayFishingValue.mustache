@@ -1,0 +1,46 @@
+<div class="reportSection">
+  <h4>Displaced Fishing Value</h4>
+  <p class="large">
+    {{#sanctuaries}}
+    {{#aquacultureAreas}}
+    This proposal includes both Sanctuary and Aquaculture areas, displacing
+    <strong>{{sanctuaryPercent}}%</strong> and <strong>{{aquacultureAreaPercent}}%</strong> 
+    of fishing value within Barbuda's waters, respectively.
+    {{/aquacultureAreas}}
+    {{/sanctuaries}}
+    {{#sanctuaries}}
+    {{^aquacultureAreas}}
+    This proposal includes {{numSanctuaries}}
+    {{#sancPlural}}Sanctuaries{{/sancPlural}}{{^sancPlural}}Sanctuary{{/sancPlural}},
+    displacing <strong>{{sanctuaryPercent}}%</strong> of fishing value within 
+    Barbuda's waters based on user reported values of fishing grounds
+    {{/aquacultureAreas}}
+    {{/sanctuaries}}
+    {{^sanctuaries}}
+    {{#aquacultureAreas}}
+    This proposal includes {{numAquacultureAreas}}
+    Aquaculture Area{{#aquacultureAreasPlural}}s{{/aquacultureAreasPlural}},
+    displacing <strong>{{aquacultureAreaPercent}}%</strong> of fishing value within 
+    Barbuda's waters based on user reported values of fishing grounds
+    {{/aquacultureAreas}}
+    {{/sanctuaries}}
+    {{#moorings}}
+    {{numMoorings}} Mooring Area{{#mooringsPlural}}s are{{/mooringsPlural}} {{^mooringsPlural}}is{{/mooringsPlural}}
+    also included, which cover{{^mooringsPlural}}s{{/mooringsPlural}} <strong>{{mooringAreaPercent}}%</strong> of 
+    regional fishing value. Mooring areas may displace fishing activities.
+    {{/moorings}}
+  </p>
+  <a href="#" data-toggle-node="5241ea7de0fba11f3d010011">show fishing values layer</a>
+</div>
+
+{{#fishingAreas}}
+<div class="reportSection">
+  <h4>Priority Fishing Areas</h4>
+  <p class="large">
+    This proposal includes {{numFishingAreas}} Fishing Priority 
+    Area{{#fishingAreaPural}}s{{/fishingAreaPural}}, representing
+    <strong>{{fishingAreaPercent}}%</strong> of the fishing value within Barbuda's 
+    waters based on user reported values of fishing grounds
+  </p>
+</div>
+{{/fishingAreas}}

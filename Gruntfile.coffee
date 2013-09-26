@@ -11,19 +11,22 @@ module.exports = (grunt) ->
           keepalive: true
     watch:
       scripts:
-        files: ['src/scripts/**/*.coffee', 'lib/scripts/**/*.coffee']
+        files: [
+          'scripts/**/*.coffee', 
+          'node_modules/seasketch-reporting-api/scripts/**/*.coffee'
+        ]
         tasks: ['browserify']
       templates:
         files: [
-          'src/templates/**/*.mustache'
-          'lib/templates/**/*.mustache'
+          'templates/**/*.mustache'
+          'node_modules/seasketch-reporting-api/templates/**/*.mustache'
         ]
         tasks: ['hogan', 'browserify']
       stylesheets:
         files: [
-          'src/stylesheets/**/*.less'
+          'stylesheets/**/*.less'
           'node_modules/backbone/less/*'
-          'lib/stylesheets/**/*.less'
+          'node_modules/seasketch-reporting-api/stylesheets/**/*.less'
         ]
         tasks: ['less']
       livereload:
@@ -32,29 +35,58 @@ module.exports = (grunt) ->
           livereload: true
     hogan:
       main:
-        dest: 'src/templates/templates.js'
-        src: 'src/templates/**/*.mustache'
+        dest: 'templates/templates.js'
+        src: 'templates/**/*.mustache'
       lib:
-        dest: 'lib/templates/templates.js'
-        src: 'lib/templates/**/*.mustache'
+        dest: 'node_modules/seasketch-reporting-api/templates/templates.js'
+        src: 'node_modules/seasketch-reporting-api/templates/**/*.mustache'
       options:
         commonJsWrapper: true
         defaultName: (filename) -> 
           filename
-            .replace('src/templates/', '')
-            .replace('lib/templates/', '')
+            .replace('templates/', '')
+            .replace('node_modules/seasketch-reporting-api/templates/', '')
             .replace('.mustache', '')
     less:
-      main:
+      fishSanctuary:
         files:
-          'dist/fishSanctuary.css': 'src/stylesheets/fishSanctuary.less'
+          'dist/fishSanctuary.css': 'stylesheets/fishSanctuary.less'
+      aquaculture:
+        files:
+          'dist/aquaculture.css': 'stylesheets/aquaculture.less'
+      fishingPriority:
+        files:
+          'dist/fishingPriority.css': 'stylesheets/fishingPriority.less'
+      mooring:
+        files:
+          'dist/mooring.css': 'stylesheets/mooring.less'
+      proposal:
+        files:
+          'dist/proposal.css': 'stylesheets/proposal.less'
     browserify:
-      fish:
-        src: 'src/scripts/fishSanctuary.coffee'
+      fishSanctuary:
+        src: 'scripts/fishSanctuary.coffee'
         dest: 'dist/fishSanctuary.js'
+      aquaculture:
+        src: 'scripts/aquaculture.coffee'
+        dest: 'dist/aquaculture.js'
+      fishingPriority:
+        src: 'scripts/fishingPriority.coffee'
+        dest: 'dist/fishingPriority.js'
+      mooring:
+        src: 'scripts/mooring.coffee'
+        dest: 'dist/mooring.js'
+      proposal:
+        src: 'scripts/proposal.coffee'
+        dest: 'dist/proposal.js'
       options:
         transform: ['coffeeify']
         debug: true
+        alias: [
+          'node_modules/seasketch-reporting-api/scripts/reportTab.coffee:reportTab'
+          'node_modules/seasketch-reporting-api/scripts/utils.coffee:api/utils'
+          'node_modules/seasketch-reporting-api/templates/templates.js:api/templates'
+        ]
 
   grunt.loadNpmTasks('grunt-contrib-connect')
   grunt.loadNpmTasks('grunt-contrib-watch')

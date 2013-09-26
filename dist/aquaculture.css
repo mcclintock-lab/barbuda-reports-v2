@@ -152,6 +152,9 @@
   color: white;
   background: #718ea5;
 }
+.reportView .tocContainer {
+  padding: 10px;
+}
 .reportView .reportSection {
   *zoom: 1;
   margin-bottom: 20px;
@@ -173,12 +176,26 @@
   font-size: 15px;
   line-height: 19px;
 }
+.reportView .reportSection p.green-check {
+  padding-left: 50px;
+  padding-right: 10px;
+  position: relative;
+}
+.reportView .reportSection p.green-check:before {
+  font-family: 'fontello';
+  color: green;
+  content: '';
+  position: absolute;
+  left: 15px;
+  top: 30%;
+  font-size: 24px;
+}
 .reportView .reportSection table {
   width: 100%;
   border: 1px solid #e1e1e1;
 }
 .reportView .reportSection table thead th {
-  background: #fafafa;
+  background: white;
   background-color: #f0f0f0;
   background-image: -moz-linear-gradient(top, #fafafa, #e1e1e1);
   background-image: -webkit-gradient(linear, 0 0, 0 100%, from(#fafafa), to(#e1e1e1));
@@ -219,4 +236,78 @@
 }
 .reportView a[data-toggle-node][data-visible=true]:before {
   content: '☑';
+}
+.reportView h4 a[data-toggle-node] {
+  float: right;
+  color: grey;
+}
+.reportView h4 a[data-toggle-node]:before {
+  top: 2px;
+  left: -18px;
+}
+.reportView .reportSection.tableContainer {
+  border: none;
+  padding: 0;
+}
+.reportView .reportSection.tableContainer h4 {
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
+  margin: 0px;
+  -webkit-box-shadow: none;
+  -moz-box-shadow: none;
+  box-shadow: none;
+  -webkit-box-shadow: 1px 1px 2px rgba(0, 0, 0, 0.1);
+  -moz-box-shadow: 1px 1px 2px rgba(0, 0, 0, 0.1);
+  box-shadow: 1px 1px 2px rgba(0, 0, 0, 0.1);
+}
+.reportView .reportSection.tableContainer table {
+  border-collapse: collapse;
+  border: 1px solid red;
+  width: 100%;
+  -webkit-box-shadow: 1px 1px 2px rgba(0, 0, 0, 0.1);
+  -moz-box-shadow: 1px 1px 2px rgba(0, 0, 0, 0.1);
+  box-shadow: 1px 1px 2px rgba(0, 0, 0, 0.1);
+}
+.reportView .reportSection.tableContainer table thead th {
+  background-image: none;
+  background: #f9f9f9;
+}
+.reportView .reportSection.tableContainer table tbody td {
+  text-align: center;
+}
+.reportView .reportSection.tableContainer table tbody td:first-child {
+  text-align: left;
+}
+.reportView .reportSection.tableContainer table tr.metGoal {
+  background: #f0fbee;
+}
+.reportView .reportSection.tableContainer table tfoot td {
+  background: #f9f9f9;
+  padding: 5px 10px;
+  text-align: right;
+}
+.reportView .reportSection.tableContainer table tfoot td .pagination {
+  margin: 5px 0px;
+  margin-bottom: -2px;
+}
+.reportView .reportSection.tableContainer table tfoot td .pagination li {
+  font-size: 12px;
+}
+.reportView .reportSection.tableContainer table tfoot td .pagination li a {
+  line-height: 16px;
+  padding: 5px 10px;
+}
+.reportView .reportSection.tableContainer td {
+  border: 1px solid #e6e6e6;
+}
+.reportView .reportSection.tableContainer p {
+  padding: 10px;
+}
+.fishingValue [data-toggle-node] {
+  float: right;
+  margin-right: 10px;
+}
+.habitat [data-toggle-node] {
+  top: 8px;
 }

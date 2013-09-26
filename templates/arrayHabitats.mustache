@@ -1,0 +1,109 @@
+{{#sanctuaries}}
+<div class="reportSection tableContainer">
+  <h4>Habitats within {{numSanctuaries}} {{^sanctuaryPlural}}Sanctuary{{/sanctuaryPlural}}{{#sanctuaryPlural}}Sanctuaries{{/sanctuaryPlural}}</h4>
+  <table>
+    <thead>
+      <tr>
+        <th>Habitat</th>
+        <th>Percent of Total Habitat</th>
+        <th>Meets 30% goal</th>
+      </tr>
+    </thead>
+    <tbody>
+      {{#sanctuaryHabitat}}
+      <tr class="{{#meetsGoal}}metGoal{{/meetsGoal}}">
+        <td>{{HabType}}</td>
+        <td>{{Percent}} %</td>
+        <td>{{#meetsGoal}}yes{{/meetsGoal}}{{^meetsGoal}}no{{/meetsGoal}}</td>
+      </tr>
+      {{/sanctuaryHabitat}}
+    </tbody>
+  </table>
+  <p>
+    Percentages shown represent the proportion of habitats available in 
+    Barbuda's entire 3 nautical mile boundary captured within sanctuaries. <br>
+    <a href="#" data-toggle-node="51f5545c08dc4f5f2d216146">show habitats layer</a>
+  </p>
+</div>
+{{/sanctuaries}}
+
+{{#aquacultureAreas}}
+<div class="reportSection tableContainer">
+  <h4>Habitats within {{numAquaculture}} Aquaculture Area{{#aquaPlural}}s{{/aquaPlural}}</h4>
+  <table>
+    <thead>
+      <tr>
+        <th>Habitat</th>
+        <th>Percent of Total Habitat</th>
+      </tr>
+    </thead>
+    <tbody>
+      {{#aquacultureHabitat}}
+      <tr>
+        <td>{{HabType}}</td>
+        <td>{{Percent}} %</td>
+      </tr>
+      {{/aquacultureHabitat}}
+    </tbody>
+  </table>
+<!--   <p>
+    Percentages shown represent the proportion of habitats available in 
+    Barbuda's entire 3 nautical mile boundary captured within aquaculture 
+    areas.
+  </p> -->
+</div>
+{{/aquacultureAreas}}
+
+{{#moorings}}
+<div class="reportSection tableContainer">
+  <h4>Habitats within {{numMoorings}} Mooring Area{{#mooringPlural}}s{{/mooringPlural}}</h4>
+  <table>
+    <thead>
+      <tr>
+        <th>Habitat</th>
+        <th>Percent of Total Habitat</th>
+      </tr>
+    </thead>
+    <tbody>
+      {{#mooringData}}
+      <tr>
+        <td>{{HabType}}</td>
+        <td>{{Percent}} %</td>
+      </tr>
+      {{/mooringData}}
+    </tbody>
+  </table>
+<!--   <p>
+    Percentages shown represent the proportion of habitats available in 
+    Barbuda's entire 3 nautical mile boundary captured within mooring 
+    areas.
+  </p> -->
+</div>
+{{/moorings}}
+
+{{#fishingAreas}}
+<div class="reportSection tableContainer">
+  <h4>Habitats within {{numFishingAreas}} Fishing Priority Area{{#fishingAreaPlural}}s{{/fishingAreaPlural}}</h4>
+  <table>
+    <thead>
+      <tr>
+        <th>Habitat</th>
+        <th>Percent of Total Habitat</th>
+      </tr>
+    </thead>
+    <tbody>
+      {{#fishingAreaData}}
+      <tr>
+        <td>{{HabType}}</td>
+        <td>{{Percent}} %</td>
+      </tr>
+      {{/fishingAreaData}}
+    </tbody>
+  </table>
+  <!-- <p>
+    Percentages shown represent the proportion of habitats available in 
+    Barbuda's entire 3 nautical mile boundary captured within fishing 
+    priority areas.
+  </p> -->
+</div>
+{{/fishingAreas}}

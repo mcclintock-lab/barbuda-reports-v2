@@ -5,8 +5,23 @@
   sketches of this type.
 </div>
 {{/sketchClass.deleted}}
+
+<div class="reportSection size">
+  <h4>Size</h4>
+  <p class="large">
+    This collection of {{numSketches}} zones has a total area of <strong>{{SQ_MILES}} square miles</strong>.
+  </p>
+</div>
+
+<div class="reportSection">
+  <h4>Zones in this Proposal</h4>
+  <div class="tocContainer"></div>
+</div>
+
+{{#anyAttributes}}
 <div class="reportSection">
   <h4>{{sketchClass.name}} Attributes</h4>
-    {{>attributes/attributesTable}}
+  {{>attributes/attributesTable}}
   </table>
 </div>
+{{/anyAttributes}}
