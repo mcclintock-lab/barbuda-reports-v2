@@ -23,7 +23,7 @@ class OverviewTab extends ReportTab
   render: () ->
     MIN_DIAM = @recordSet('Diameter', 'Diameter').float('MIN_DIAM')
     SQ_MILES = @recordSet('Diameter', 'Diameter').float('SQ_MILES')
-    PERCENT = (SQ_MILES / TOTAL_AREA) * 100
+    PERCENT = (SQ_MILES / TOTAL_AREA) * 100.0
     if MIN_DIAM > RECOMMENDED_DIAMETER.min
       DIAM_OK = true
 
