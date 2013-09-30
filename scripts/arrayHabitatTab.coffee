@@ -21,7 +21,7 @@ class ArrayHabitatTab extends ReportTab
         SANCTUARY_ID
       ).toArray()
       for row in sanctuary
-        if parseFloat(row.Percent) >= 30
+        if parseFloat(row.Percent) >= 33
           row.meetsGoal = true
 
     aquacultureAreas = @getChildren AQUACULTURE_ID
