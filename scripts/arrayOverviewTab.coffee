@@ -18,7 +18,7 @@ class ArrayOverviewTab extends ReportTab
     SQ_MILES = 0
     for rs in @recordSets 'Diameter', 'Diameter'
       SQ_MILES += rs.float('SQ_MILES')
-    PERCENT = SQ_MILES / TOTAL_AREA
+    PERCENT = (SQ_MILES / TOTAL_AREA) * 100
     context =
       sketch: @model.forTemplate()
       sketchClass: @sketchClass.forTemplate()
@@ -27,7 +27,7 @@ class ArrayOverviewTab extends ReportTab
       admin: @project.isAdmin window.user
       numSketches: @children.length
       SQ_MILES: round(SQ_MILES, 2)
-      PERCENT: round(SQ_MILES, 0)
+      PERCENT: round(PERCENT, 0)
     
     @$el.html @template.render(context, partials)
 
