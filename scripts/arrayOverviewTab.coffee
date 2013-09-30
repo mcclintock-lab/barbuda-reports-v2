@@ -18,7 +18,7 @@ class ArrayOverviewTab extends ReportTab
     SQ_MILES = 0
     for rs in @recordSets 'Diameter', 'Diameter'
       SQ_MILES += rs.float('SQ_MILES')
-    PERCENT = (SQ_MILES / TOTAL_AREA) * 100
+    PERCENT = (SQ_MILES / TOTAL_AREA) * 100.0
     context =
       sketch: @model.forTemplate()
       sketchClass: @sketchClass.forTemplate()
