@@ -1,7 +1,7 @@
 ReportTab = require 'reportTab'
 templates = require '../templates/templates.js'
 round = require('api/utils').round
-
+TOTAL_AREA = 175.95 # sq miles
 _partials = require 'api/templates'
 partials = []
 for key, val of _partials
@@ -18,7 +18,7 @@ class ArrayOverviewTab extends ReportTab
     SQ_MILES = 0
     for rs in @recordSets 'Diameter', 'Diameter'
       SQ_MILES += rs.float('SQ_MILES')
-
+    PERCENT = SQ_MILES / TOTAL_AREA
     context =
       sketch: @model.forTemplate()
       sketchClass: @sketchClass.forTemplate()
@@ -27,6 +27,7 @@ class ArrayOverviewTab extends ReportTab
       admin: @project.isAdmin window.user
       numSketches: @children.length
       SQ_MILES: round(SQ_MILES, 2)
+      PERCENT: round(SQ_MILES, 0)
     
     @$el.html @template.render(context, partials)
 
