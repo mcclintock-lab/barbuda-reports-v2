@@ -16,21 +16,21 @@ class ArrayOverviewTab extends ReportTab
   timeout: 120000
 
   render: () ->
-    OCEAN_AREA = 0
-    for rs in @recordSets 'Diameter', 'Diameter'
-      OCEAN_AREA += rs.float('OCEAN_AREA')
+    OCEAN_AREA = @recordSet('Diameter', 'Diameter', 
+      '51faebef8faa309b7c05de02').float('OCEAN_AREA')
     OCEAN_PERCENT = (OCEAN_AREA / TOTAL_AREA) * 100.0
-    LAGOON_AREA = 0
-    for rs in @recordSets 'Diameter', 'Diameter'
-      LAGOON_AREA += rs.float('LAGOON_AREA')
+    LAGOON_AREA = @recordSet('Diameter', 'Diameter', 
+      '51faebef8faa309b7c05de02').float('LAGOON_AREA')
     LAGOON_PERCENT = (LAGOON_AREA / TOTAL_LAGOON_AREA) * 100.0
+    sanctuaries = _.filter @children, (c) -> 
+      c.get('sketchclass') is '51faebef8faa309b7c05de02'
     context =
       sketch: @model.forTemplate()
       sketchClass: @sketchClass.forTemplate()
       attributes: @model.getAttributes()
       anyAttributes: @model.getAttributes().length > 0
       admin: @project.isAdmin window.user
-      numSketches: @children.length
+      numSketches: sanctuaries.length
       OCEAN_AREA: round(OCEAN_AREA, 2)
       OCEAN_PERCENT: round(OCEAN_PERCENT, 0)
       LAGOON_AREA: round(LAGOON_AREA, 2)
