@@ -4,7 +4,9 @@ _partials = require '../node_modules/seasketch-reporting-api/templates/templates
 partials = []
 for key, val of _partials
   partials[key.replace('node_modules/seasketch-reporting-api/', '')] = val
+round = require('api/utils').round
 
+TOTAL_AREA = 175.95 # sq miles
 # Diameter evaluation and visualization parameters
 RECOMMENDED_DIAMETER = 
   min: 2
@@ -21,7 +23,7 @@ class OverviewTab extends ReportTab
   render: () ->
     MIN_DIAM = @recordSet('Diameter', 'Diameter').float('MIN_DIAM')
     SQ_MILES = @recordSet('Diameter', 'Diameter').float('SQ_MILES')
-
+    PERCENT = (SQ_MILES / TOTAL_AREA) * 100.0
     if MIN_DIAM > RECOMMENDED_DIAMETER.min
       DIAM_OK = true
 
@@ -38,6 +40,7 @@ class OverviewTab extends ReportTab
       DIAM: MIN_DIAM
       MIN_DIAM: RECOMMENDED_DIAMETER.min
       renderMinimumWidth: @renderMinimumWidth
+      PERCENT: round(PERCENT, 0)
     
     @$el.html @template.render(context, partials)
     if @renderMinimumWidth

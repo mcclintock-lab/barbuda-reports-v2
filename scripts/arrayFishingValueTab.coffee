@@ -61,7 +61,7 @@ class ArrayFishingValueTab extends ReportTab
       numFishingAreas: fishingAreas.length
       fishingAreas: fishingAreas.length > 0
       fishingAreasPlural: fishingAreas.length > 1
-      aquacultureAreaPercent: aquaculturePercent.toString()
+      aquacultureAreaPercent: aquaculturePercent
       numAquacultureAreas: aquacultureAreas.length
       aquacultureAreas: aquacultureAreas.length > 0
       aquacultureAreasPlural: aquacultureAreas.length > 1

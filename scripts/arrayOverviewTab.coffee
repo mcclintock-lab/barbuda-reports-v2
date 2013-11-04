@@ -1,7 +1,8 @@
 ReportTab = require 'reportTab'
 templates = require '../templates/templates.js'
 round = require('api/utils').round
-
+TOTAL_AREA = 164.8 # sq miles
+TOTAL_LAGOON_AREA = 11.1
 _partials = require 'api/templates'
 partials = []
 for key, val of _partials
@@ -15,30 +16,38 @@ class ArrayOverviewTab extends ReportTab
   timeout: 120000
 
   render: () ->
-    SQ_MILES = 0
-    for rs in @recordSets 'Diameter', 'Diameter'
-      SQ_MILES += rs.float('SQ_MILES')
-
+    OCEAN_AREA = @recordSet('Diameter', 'Diameter', 
+      '51faebef8faa309b7c05de02').float('OCEAN_AREA')
+    OCEAN_PERCENT = (OCEAN_AREA / TOTAL_AREA) * 100.0
+    LAGOON_AREA = @recordSet('Diameter', 'Diameter', 
+      '51faebef8faa309b7c05de02').float('LAGOON_AREA')
+    LAGOON_PERCENT = (LAGOON_AREA / TOTAL_LAGOON_AREA) * 100.0
+    sanctuaries = _.filter @children, (c) -> 
+      c.get('sketchclass') is '51faebef8faa309b7c05de02'
     context =
       sketch: @model.forTemplate()
       sketchClass: @sketchClass.forTemplate()
       attributes: @model.getAttributes()
       anyAttributes: @model.getAttributes().length > 0
       admin: @project.isAdmin window.user
-      numSketches: @children.length
-      SQ_MILES: round(SQ_MILES, 2)
+      numSketches: sanctuaries.length
+      OCEAN_AREA: round(OCEAN_AREA, 2)
+      OCEAN_PERCENT: round(OCEAN_PERCENT, 0)
+      LAGOON_AREA: round(LAGOON_AREA, 2)
+      LAGOON_PERCENT: round(LAGOON_PERCENT, 0)
     
     @$el.html @template.render(context, partials)
 
-    nodes = [@model]
-    @model.set 'open', true
-    nodes = nodes.concat @children
-    for node in nodes
-      node.set 'selected', false
-    TableOfContents = window.require('views/tableOfContents')
-    @toc = new TableOfContents(nodes)
-    @$('.tocContainer').append @toc.el
-    @toc.render()
+    # nodes = [@model]
+    # @model.set 'open', true
+    # nodes = nodes.concat @children
+    # console.log 'nodes', nodes, 'children', @children
+    # for node in nodes
+    #   node.set 'selected', false
+    # TableOfContents = window.require('views/tableOfContents')
+    # @toc = new TableOfContents(nodes)
+    # @$('.tocContainer').append @toc.el
+    # @toc.render()
 
   remove: () ->
     @toc?.remove()
