@@ -4,9 +4,7 @@ HabitatTab = require './habitatTab.coffee'
 FishingValueTab = require './fishingValue.coffee'
 
 class MooringHabitatTab extends HabitatTab
-  dependencies: ['HabitatsInMooring']
   heading: "Habitats Impacted by Mooring Area"
-  paramName: "HabitatsInMooring"
 
 class MooringOverviewTab extends OverviewTab
   renderMinimumWidth: false

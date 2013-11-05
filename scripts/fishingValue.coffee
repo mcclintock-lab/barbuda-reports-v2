@@ -10,13 +10,12 @@ class FishingValueTab extends ReportTab
   areaLabel: 'protected area'
 
   render: () ->
-    depName = @dependencies[0]
     context =
       sketch: @model.forTemplate()
       sketchClass: @sketchClass.forTemplate()
       attributes: @model.getAttributes()
       admin: @project.isAdmin window.user
-      percent: @recordSet(depName, depName).float('PERCENT', 2)
+      percent: @recordSet('FishingValue', 'FishingValue').float('PERCENT', 2)
       areaLabel: @areaLabel
     
     @$el.html @template.render(context, templates)

@@ -5,7 +5,6 @@ FishingValueTab = require './fishingValue.coffee'
 
 class FishingPriorityValueTab extends FishingValueTab
   template: templates.fishingPriorityArea
-  dependencies: ['FishingPriorityArea']
 
 class FishingPriorityOverviewTab extends OverviewTab
   renderMinimumWidth: false
