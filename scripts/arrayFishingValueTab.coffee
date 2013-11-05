@@ -8,7 +8,7 @@ class ArrayFishingValueTab extends ReportTab
   name: 'Fishing Value'
   className: 'fishingValue'
   template: templates.arrayFishingValue
-  dependencies: ['FishingValue', 'FishingPriorityArea']
+  dependencies: ['FishingValue']
   timeout: 240000
 
   render: () ->

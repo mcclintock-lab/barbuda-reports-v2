@@ -9,44 +9,32 @@ class ArrayHabitatTab extends ReportTab
   name: 'Habitat'
   className: 'habitat'
   template: templates.arrayHabitats
-  dependencies: ['BarbudaHabitat', 'HabitatsInMooring']
+  dependencies: ['BarbudaHabitat']
   timeout: 240000
   
   render: () ->
     sanctuaries = @getChildren SANCTUARY_ID
     if sanctuaries.length
-      sanctuary = @recordSet(
-        'BarbudaHabitat', 
-        'Habitats', 
-        SANCTUARY_ID
-      ).toArray()
+      sanctuary = @recordSet('BarbudaHabitat', 'Habitats', SANCTUARY_ID)
+        .toArray()
       for row in sanctuary
         if parseFloat(row.Percent) >= 33
           row.meetsGoal = true
 
     aquacultureAreas = @getChildren AQUACULTURE_ID
     if aquacultureAreas.length
-      aquaculture = @recordSet(
-        'BarbudaHabitat', 
-        'Habitats', 
-        AQUACULTURE_ID
-      ).toArray()
+      aquaculture = @recordSet('BarbudaHabitat', 'Habitats', AQUACULTURE_ID)
+        .toArray()
 
     moorings = @getChildren MOORING_ID
     if moorings.length
-      mooringData = @recordSet(
-        'HabitatsInMooring', 
-        'HabitatsInMooring', 
-        MOORING_ID
-      ).toArray()
+      mooringData = @recordSet('BarbudaHabitat', 'Habitats', MOORING_ID)
+        .toArray()
 
     fishingAreas = @getChildren FISHING_PRIORITY_AREA_ID
     if fishingAreas.length
-      fishingAreaData = @recordSet(
-        'BarbudaHabitat', 
-        'Habitats', 
-        FISHING_PRIORITY_AREA_ID
-      ).toArray()
+      fishingAreaData = @recordSet('BarbudaHabitat', 'Habitats', 
+        FISHING_PRIORITY_AREA_ID).toArray()
 
     context =
       sketch: @model.forTemplate()

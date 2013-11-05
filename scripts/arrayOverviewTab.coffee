@@ -16,11 +16,9 @@ class ArrayOverviewTab extends ReportTab
   timeout: 120000
 
   render: () ->
-    OCEAN_AREA = @recordSet('Diameter', 'Diameter', 
-      '51faebef8faa309b7c05de02').float('OCEAN_AREA')
+    OCEAN_AREA = @recordSet('Diameter', 'Diameter').float('OCEAN_AREA')
+    LAGOON_AREA = @recordSet('Diameter', 'Diameter').float('LAGOON_AREA')
     OCEAN_PERCENT = (OCEAN_AREA / TOTAL_AREA) * 100.0
-    LAGOON_AREA = @recordSet('Diameter', 'Diameter', 
-      '51faebef8faa309b7c05de02').float('LAGOON_AREA')
     LAGOON_PERCENT = (LAGOON_AREA / TOTAL_LAGOON_AREA) * 100.0
     sanctuaries = _.filter @children, (c) -> 
       c.get('sketchclass') is '51faebef8faa309b7c05de02'
