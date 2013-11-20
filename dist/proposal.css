@@ -382,19 +382,18 @@
 .y.axis text.title {
   text-anchor: middle;
   dominant-baseline: hanging;
-  fill: black;
+  fill: blue;
 }
 .x.axis text {
   dominant-baseline: hanging;
+  text-anchor: left;
+  fill: blue;
 }
 .x axis {
   dominant-baseline: hanging;
 }
-.x.axis-text {
+.x.axis-title {
   dominant-baseline: hanging;
-}
-.x.axis text.title {
-  fill: black;
   text-anchor: middle;
 }
 .ttip-tip {
