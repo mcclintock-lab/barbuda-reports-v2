@@ -35,7 +35,8 @@ class ArrayTradeoffsTab extends ReportTab
     halfw = (w+margin.left+margin.right)
     totalw = halfw*2
 
-    mychart = scatterplot().xvar(0)
+    #make sure its @scatterplot to pass in the right context (tab) for d3
+    mychart = @scatterplot().xvar(0)
                            .yvar(1)
                            .xlab("Fishing Value")
                            .ylab("Ecological Value")
@@ -43,7 +44,8 @@ class ArrayTradeoffsTab extends ReportTab
                            .width(w)
                            .margin(margin)
 
-    ch = d3.selectAll("div.tradeoff-chart")
+    
+    ch = d3.select(@$('.tradeoff-chart'))
     ch.datum(tradeoff_data)
       .call(mychart)
 
@@ -79,10 +81,8 @@ class ArrayTradeoffsTab extends ReportTab
     return xloc+10
 
 
-
-  scatterplot = () ->
-
-
+  scatterplot: () =>
+    view = @
     width = 380
     height = 600
     margin = {left:40, top:5, right:40, bottom: 40, inner:5}
@@ -104,12 +104,17 @@ class ArrayTradeoffsTab extends ReportTab
     pointsSelect = null
     labelsSelect = null
     legendSelect = null
-    
+    if window.d3
+      #clear out the old values
+      view.$('.tradeoff-chart').html('')
+      el = view.$('.tradeoff-chart')[0]
+
     ## the main function
     chart = (selection) ->
       selection.each (data) ->
         x = data.map (d) -> parseFloat(d.FISH_VAL)
         y = data.map (d) -> parseFloat(d.ECO_VAL)
+
 
         paneloffset = 0
         panelwidth = width
@@ -122,12 +127,9 @@ class ArrayTradeoffsTab extends ReportTab
 
         # I'll replace missing values something smaller than what's observed
         na_value = d3.min(x.concat y) - 100
-
-        # Select the svg element, if it exists.
-        svg = d3.select(".tradeoff-chart").selectAll("svg").data([data])
-
-        # Otherwise, create the skeletal chart.
-        gEnter = svg.enter().append("svg").append("g")
+        currelem = d3.select(view.$('.tradeoff-chart')[0])
+        svg = d3.select(view.$('.tradeoff-chart')[0]).append("svg").data([data])
+        svg.append("g")
 
         # Update the outer dimensions.
         svg.attr("width", width+margin.left+margin.right)

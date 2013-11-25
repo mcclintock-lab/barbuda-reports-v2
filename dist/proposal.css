@@ -418,6 +418,9 @@
 .chart-tooltip li {
   margin: 2px 2px 2px 22px;
 }
+.chart-tradeoff {
+  margin: 1px 1px 1px 1px;
+}
 .legend-text {
   text-anchor: left;
   margin: 10px 0px 2px 2px;
