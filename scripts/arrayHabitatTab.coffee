@@ -36,6 +36,12 @@ class ArrayHabitatTab extends ReportTab
       fishingAreaData = @recordSet('BarbudaHabitat', 'Habitats', 
         FISHING_PRIORITY_AREA_ID).toArray()
 
+    noNetZones = @getChildren NO_NET_ZONES_ID
+    console.log("no net zones!!!!!!!!!", noNetZones)
+    if noNetZones.length
+      noNetZonesData = @recordSet('BarbudaHabitat', 'Habitats', 
+        NO_NET_ZONES_ID).toArray()
+
     context =
       sketch: @model.forTemplate()
       sketchClass: @sketchClass.forTemplate()
@@ -53,11 +59,17 @@ class ArrayHabitatTab extends ReportTab
       numMoorings: moorings.length
       mooringData: mooringData
       mooringPlural: moorings.length > 1
+
       fishingAreas: fishingAreas.length > 0
       numFishingAreas: fishingAreas.length
       fishingAreaData: fishingAreaData
       fishingAreaPlural: fishingAreas.length > 1
-    
+
+      hasNoNetZones: noNetZones.length > 0
+      numNoNetZones: noNetZones.length
+      noNetZonesData: noNetZonesData
+      noNetZonesPlural: noNetZones.length > 1
+
     @$el.html @template.render(context, templates)
     @enableLayerTogglers(@$el)
 

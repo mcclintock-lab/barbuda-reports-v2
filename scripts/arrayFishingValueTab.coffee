@@ -44,6 +44,14 @@ class ArrayFishingValueTab extends ReportTab
         FISHING_PRIORITY_AREA_ID
       ).float('PERCENT', 0)
 
+    noNetZones = @getChildren NO_NET_ZONES_ID
+    if noNetZones.length
+      noNetZonesPercent = @recordSet(
+        'FishingValue', 
+        'FishingValue', 
+        NO_NET_ZONES_ID
+      ).float('PERCENT', 0)
+
     context =
       sketch: @model.forTemplate()
       sketchClass: @sketchClass.forTemplate()
@@ -61,10 +69,16 @@ class ArrayFishingValueTab extends ReportTab
       numFishingAreas: fishingAreas.length
       fishingAreas: fishingAreas.length > 0
       fishingAreasPlural: fishingAreas.length > 1
+
       aquacultureAreaPercent: aquaculturePercent
       numAquacultureAreas: aquacultureAreas.length
       aquacultureAreas: aquacultureAreas.length > 0
       aquacultureAreasPlural: aquacultureAreas.length > 1
+
+      noNetZonesPercent: noNetZonesPercent
+      numNoNetZones: noNetZones.length
+      hasNoNetZones: noNetZones.length > 0
+      noNetZonesPlural: noNetZones.length > 1
 
     @$el.html @template.render(context, templates)
     @enableLayerTogglers(@$el)

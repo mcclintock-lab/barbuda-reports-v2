@@ -8,11 +8,44 @@
 
 <div class="reportSection size">
   <h4>Size</h4>
-  <p class="large">
-    This collection of {{numSketches}} sanctuary zones has a total <em>oceanic</em> area of <strong>{{OCEAN_AREA}} square miles</strong>, 
-    which represents <strong>{{OCEAN_PERCENT}}%</strong> of Barbuda's waters. It also includes 
-    {{LAGOON_AREA}} square miles of <em>lagoon area</em>, or {{LAGOON_PERCENT}}%.
+  {{#hasSketches}}
+    <p class="large">
+    This collection is composed of <strong>{{numSketches}} zone{{#sketchesPlural}}s{{/sketchesPlural}}</strong> in both ocean and lagoon waters. The collection includes a total <em>oceanic</em> area of <strong>{{sumOceanArea}} square miles</strong>, which represents <strong>{{sumOceanPercent}}%</strong> of Barbuda's waters. It also incorporates 
+    <strong>{{sumLagoonArea}} square miles</strong>, or <strong>{{sumLagoonPercent}}%</strong>, of the total <em>lagoon area</em>.
   </p>
+  {{/hasSketches}}  
+  {{#hasSanctuaries}}
+    <p class="large">
+    The collection includes <strong>{{numSanctuaries}} {{^sanctuariesPlural}}sanctuary{{/sanctuariesPlural}}{{#sanctuariesPlural}}sanctuaries{{/sanctuariesPlural}}</strong> in both ocean and lagoon waters. The {{^sanctuariesPlural}}sanctuary{{/sanctuariesPlural}}{{#sanctuariesPlural}}sanctuaries{{/sanctuariesPlural}} contain{{^sanctuariesPlural}}s{{/sanctuariesPlural}} a total <em>oceanic</em> area of <strong>{{sanctuaryOceanArea}} square miles</strong>, 
+    which represents <strong>{{sanctuaryOceanPercent}}%</strong> of Barbuda's waters. It also includes 
+    <strong>{{sanctuaryLagoonArea}} square miles</strong>, or <strong>{{sanctuaryLagoonPercent}}%</strong>, of the total <em>lagoon area</em>.
+  </p>
+  {{/hasSanctuaries}}
+  {{#hasNoNetZones}}
+    <p class="large">
+    The collection includes <strong>{{numNoNetZones}} No Net Zone{{#noNetZonesPlural}}s{{/noNetZonesPlural}}</strong> in both ocean and lagoon waters. The No Net Zone{{#noNetZonesPlural}}s{{/noNetZonesPlural}}</strong> contain{{^noNetZonesPlural}}s{{/noNetZonesPlural}} a total <em>oceanic</em> area of <strong>{{noNetZonesOceanArea}} square miles</strong>, which represents <strong>{{noNetZonesOceanPercent}}%</strong> of Barbuda's waters. It also includes 
+    <strong>{{noNetZonesLagoonArea}} square miles</strong>, or <strong>{{noNetZonesLagoonPercent}}%</strong>, of the total <em>lagoon area</em>.
+  </p>
+  {{/hasNoNetZones}}
+  {{#hasMoorings}}
+    <p class="large">
+    The collection includes <strong>{{numMoorings}} Mooring Area{{#mooringsPlural}}s{{/mooringsPlural}}</strong> in both ocean and lagoon waters. The Mooring Area{{#mooringsPlural}}s{{/mooringsPlural}} contain{{^mooringsPlural}}s{{/mooringsPlural}} a total <em>oceanic</em> area of <strong>{{mooringsOceanArea}} square miles</strong>, 
+    which represents <strong>{{mooringsOceanPercent}}%</strong> of Barbuda's waters. It also includes 
+    <strong>{{mooringsLagoonArea}} square miles</strong>, or <strong>{{mooringsLagoonPercent}}%</strong>, of the total <em>lagoon area</em>.
+  </p>
+  {{/hasMoorings}}
+  {{#hasAquaculture}}
+    <p class="large">
+    The collection includes <strong>{{numAquaculture}} Aquaculture Area{{#aquaculturePlural}}s{{/aquaculturePlural}}</strong> in both ocean and lagoon waters. The Aquaculture Area{{#aquaculturePlural}}s{{/aquaculturePlural}} contain{{^aquaculturePlural}}s{{/aquaculturePlural}} a total <em>oceanic</em> area of <strong>{{aquacultureOceanArea}} square miles</strong>, which represents <strong>{{aquacultureOceanPercent}}%</strong> of Barbuda's waters. It also includes 
+    <strong>{{aquacultureLagoonArea}} square miles</strong>, or <strong>{{aquacultureLagoonPercent}}%</strong>, of the total <em>lagoon area</em>.
+  </p>
+  {{/hasAquaculture}}
+  {{#hasFishingAreas}}
+    <p class="large">
+    The collection includes <strong>{{numFishingAreas}} Fishing Priority Area{{#fishingAreasPlural}}s{{/fishingAreasPlural}}</strong> in both ocean and lagoon waters. The Fishing Priority Area{{#fishingAreasPlural}}s{{/fishingAreasPlural}} contain{{^fishingAreasPlural}}s{{/fishingAreasPlural}} a total <em>oceanic</em> area of <strong>{{fishingAreasOceanArea}} square miles</strong>, which represents <strong>{{fishingAreasOceanPercent}}%</strong> of Barbuda's waters. It also includes 
+    <strong>{{fishingAreasLagoonArea}} square miles</strong>, or <strong>{{fishingAreasLagoonPercent}}%</strong>, of the total <em>lagoon area</em>.
+  </p>
+  {{/hasFishingAreas}}
 </div>
 <!--
 <div class="reportSection">

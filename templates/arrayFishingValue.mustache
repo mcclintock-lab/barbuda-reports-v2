@@ -33,6 +33,13 @@
     also included, which cover{{^mooringsPlural}}s{{/mooringsPlural}} <strong>{{mooringAreaPercent}}%</strong> of 
     regional fishing value. Mooring areas may displace fishing activities.
     {{/moorings}}
+    {{#hasNoNetZones}}
+    <br>
+    <br>
+    {{numNoNetZones}} Not Net Zone{{#noNetZonesPlural}}s are{{/noNetZonesPlural}} {{^noNetZonesPlural}}is{{/noNetZonesPlural}}
+    also included, which cover{{^noNetZonesPlural}}s{{/noNetZonesPlural}} <strong>{{noNetZonesPercent}}%</strong> of 
+    regional fishing value. No Net Zones may displace fishing activities.
+    {{/hasNoNetZones}}
   </p>
   <a href="#" data-toggle-node="5241ea7de0fba11f3d010011">show fishing values layer</a>
 </div>
