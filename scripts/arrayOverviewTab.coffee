@@ -187,13 +187,7 @@ class ArrayOverviewTab extends ReportTab
     sumLagoonArea = sanctuaryLagoonArea+noNetZonesLagoonArea+aquacultureLagoonArea+mooringsLagoonArea+fishingAreasLagoonArea
     sumLagoonPercent = sanctuaryLagoonPercent+noNetZonesLagoonPercent+aquacultureLagoonPercent+mooringsLagoonPercent+fishingAreasLagoonPercent
     hasSketches = numTotalZones > 0
-    console.log("num sancts", numSanctuaries)
-    console.log("num no net", numNoNetZones)
-    console.log("num aq", numAquacultureAreas)
-    console.log("num moorings", numMoorings)
-    console.log("numFishing ", numFishingAreas)
-    console.log("num total zones", numTotalZones)
-    console.log("has sketches: ", hasSketches)
+
     context =
       sketch: @model.forTemplate()
       sketchClass: @sketchClass.forTemplate()

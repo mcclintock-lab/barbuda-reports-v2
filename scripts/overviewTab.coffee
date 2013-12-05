@@ -5,6 +5,10 @@ partials = []
 for key, val of _partials
   partials[key.replace('node_modules/seasketch-reporting-api/', '')] = val
 round = require('api/utils').round
+ids = require './ids.coffee'
+for key, value of ids
+  window[key] = value
+
 
 TOTAL_AREA = 175.95 # sq miles
 # Diameter evaluation and visualization parameters
@@ -16,17 +20,20 @@ class OverviewTab extends ReportTab
   name: 'Size'
   className: 'overview'
   template: templates.overview
-  renderMinimumWidth: true
+
   dependencies: ['Diameter']
   timeout: 60000
-
+  #  renderMinimumWidth: true
   render: () ->
     MIN_DIAM = @recordSet('Diameter', 'Diameter').float('MIN_DIAM')
     SQ_MILES = @recordSet('Diameter', 'Diameter').float('SQ_MILES')
     PERCENT = (SQ_MILES / TOTAL_AREA) * 100.0
     if MIN_DIAM > RECOMMENDED_DIAMETER.min
       DIAM_OK = true
-
+    
+    skid = @model.getAttribute('SC_ID')
+    isNoNetZone = (@sketchClass.id is NO_NET_ZONES_ID)
+    renderMinimumWidth = (!isNoNetZone)
     context =
       sketch: @model.forTemplate()
       sketchClass: @sketchClass.forTemplate()
@@ -39,11 +46,12 @@ class OverviewTab extends ReportTab
       SQ_MILES: SQ_MILES
       DIAM: MIN_DIAM
       MIN_DIAM: RECOMMENDED_DIAMETER.min
-      renderMinimumWidth: @renderMinimumWidth
+      renderMinimumWidth: renderMinimumWidth
       PERCENT: round(PERCENT, 0)
+      isNoNetZone: isNoNetZone
     
     @$el.html @template.render(context, partials)
-    if @renderMinimumWidth
+    if renderMinimumWidth
       @enableLayerTogglers(@$el)
       @drawViz(MIN_DIAM)
 

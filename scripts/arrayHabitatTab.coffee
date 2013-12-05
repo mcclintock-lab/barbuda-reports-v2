@@ -37,7 +37,6 @@ class ArrayHabitatTab extends ReportTab
         FISHING_PRIORITY_AREA_ID).toArray()
 
     noNetZones = @getChildren NO_NET_ZONES_ID
-    console.log("no net zones!!!!!!!!!", noNetZones)
     if noNetZones.length
       noNetZonesData = @recordSet('BarbudaHabitat', 'Habitats', 
         NO_NET_ZONES_ID).toArray()
