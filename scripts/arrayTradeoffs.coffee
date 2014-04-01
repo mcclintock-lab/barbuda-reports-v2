@@ -24,54 +24,54 @@ class ArrayTradeoffsTab extends ReportTab
       admin: @project.isAdmin window.user
     @$el.html @template.render(context, partials)
 
+    if window.d3
+      tradeoff_data = @recordSet('TradeoffsPropId', 'TradeoffsPropId').toArray()
 
-    tradeoff_data = @recordSet('TradeoffsPropId', 'TradeoffsPropId').toArray()
+      h = 380
+      w = 380
+      margin = {left:40, top:5, right:40, bottom: 40, inner:5}
+      halfh = (h+margin.top+margin.bottom)
+      totalh = halfh*2
+      halfw = (w+margin.left+margin.right)
+      totalw = halfw*2
 
-    h = 380
-    w = 380
-    margin = {left:40, top:5, right:40, bottom: 40, inner:5}
-    halfh = (h+margin.top+margin.bottom)
-    totalh = halfh*2
-    halfw = (w+margin.left+margin.right)
-    totalw = halfw*2
+      #make sure its @scatterplot to pass in the right context (tab) for d3
+      mychart = @scatterplot().xvar(0)
+                             .yvar(1)
+                             .xlab("Fishing Value")
+                             .ylab("Ecological Value")
+                             .height(h)
+                             .width(w)
+                             .margin(margin)
 
-    #make sure its @scatterplot to pass in the right context (tab) for d3
-    mychart = @scatterplot().xvar(0)
-                           .yvar(1)
-                           .xlab("Fishing Value")
-                           .ylab("Ecological Value")
-                           .height(h)
-                           .width(w)
-                           .margin(margin)
 
-    
-    ch = d3.select(@$('.tradeoff-chart'))
-    ch.datum(tradeoff_data)
-      .call(mychart)
+      ch = d3.select(@$('.tradeoff-chart'))
+      ch.datum(tradeoff_data)
+        .call(mychart)
 
-    tooltip = d3.select("body")
-      .append("div")
-      .attr("class", "chart-tooltip")
-      .attr("id", "chart-tooltip")
-      .text("data")
+      tooltip = d3.select("body")
+        .append("div")
+        .attr("class", "chart-tooltip")
+        .attr("id", "chart-tooltip")
+        .text("data")
 
-    mychart.pointsSelect()
-      .on "mouseover", (d) -> return tooltip.style("visibility", "visible").html("<ul><strong>Proposal: "+d.PROPOSAL+"</strong><li> Fishing value: "+d.FISH_VAL+"</li><li> Conservation value: "+d.ECO_VAL+"</li></ul>")
+      mychart.pointsSelect()
+        .on "mouseover", (d) -> return tooltip.style("visibility", "visible").html("<ul><strong>Proposal: "+d.PROPOSAL+"</strong><li> Fishing value: "+d.FISH_VAL+"</li><li> Conservation value: "+d.ECO_VAL+"</li></ul>")
 
-    mychart.pointsSelect()
-      .on "mousemove", (d) -> return tooltip.style("top", (event.pageY-10)+"px").style("left",(calc_ttip(event.pageX, d, tooltip))+"px")
+      mychart.pointsSelect()
+        .on "mousemove", (d) -> return tooltip.style("top", (event.pageY-10)+"px").style("left",(calc_ttip(event.pageX, d, tooltip))+"px")
 
-    mychart.pointsSelect()
-      .on "mouseout", (d) -> return tooltip.style("visibility", "hidden")
-            
-    mychart.labelsSelect()
-      .on "mouseover", (d) -> return tooltip.style("visibility", "visible").html("<ul><strong>Proposal: "+d.PROPOSAL+"</strong><li> Fishing value: "+d.FISH_VAL+"</li><li> Conservation value: "+d.ECO_VAL+"</li></ul>")
+      mychart.pointsSelect()
+        .on "mouseout", (d) -> return tooltip.style("visibility", "hidden")
 
-    mychart.labelsSelect()
-      .on "mousemove", (d) -> return tooltip.style("top", (event.pageY-10)+"px").style("left",(calc_ttip(event.pageX, d, tooltip))+"px")
+      mychart.labelsSelect()
+        .on "mouseover", (d) -> return tooltip.style("visibility", "visible").html("<ul><strong>Proposal: "+d.PROPOSAL+"</strong><li> Fishing value: "+d.FISH_VAL+"</li><li> Conservation value: "+d.ECO_VAL+"</li></ul>")
 
-    mychart.labelsSelect()
-      .on "mouseout", (d) -> return tooltip.style("visibility", "hidden")
+      mychart.labelsSelect()
+        .on "mousemove", (d) -> return tooltip.style("top", (event.pageY-10)+"px").style("left",(calc_ttip(event.pageX, d, tooltip))+"px")
+
+      mychart.labelsSelect()
+        .on "mouseout", (d) -> return tooltip.style("visibility", "hidden")
 
   calc_ttip = (xloc, data, tooltip) ->
     tdiv = tooltip[0][0].getBoundingClientRect()
@@ -252,14 +252,14 @@ class ArrayTradeoffsTab extends ReportTab
                 .enter()
                 .append("text")
                 .text((d)-> return d.PROPOSAL)
-                .attr("x", (d,i) -> 
+                .attr("x", (d,i) ->
                   xpos = xscale(x[i])
                   string_end = xpos+this.getComputedTextLength()
                   overlap_xstart = xpos-(this.getComputedTextLength()+5)
-                  return overlap_xstart if string_end > width 
+                  return overlap_xstart if string_end > width
                   return xpos+5
                   )
-                .attr("y", (d,i) ->       
+                .attr("y", (d,i) ->
                   ypos = yscale(y[i])
                   return ypos+10 if (ypos < 50)
                   return ypos-5

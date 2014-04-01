@@ -19,7 +19,7 @@ class DemoTab extends ReportTab
       attributes: @model.getAttributes()
       admin: @project.isAdmin window.user
       chartData: _.map data, (d, i) -> {index: i, value: d}
-    
+
     @$el.html @template.render(context, templates)
 
     # Setup bootstrap tabs
@@ -29,13 +29,14 @@ class DemoTab extends ReportTab
       $(this).tab('show')
 
     # draw d3 visualization
-    @drawChart(data)
+    if window.d3
+      @drawChart(data)
 
   drawChart: (data) ->
     console.log 'draw chart'
     p = @$('#chart p')
     console.log 'p', p.length, @el
-    margin = 
+    margin =
       top: 20
       right: 20
       bottom: 30
@@ -64,7 +65,7 @@ class DemoTab extends ReportTab
       .attr("width", width + margin.left + margin.right)
       .attr("height", height + margin.top + margin.bottom)
       .append("g")
-        .attr("transform", 
+        .attr("transform",
           "translate(#{margin.left},#{margin.top})")
 
     x.domain([0, data.length]).nice()
