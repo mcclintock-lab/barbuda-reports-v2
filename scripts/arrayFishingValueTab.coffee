@@ -52,6 +52,8 @@ class ArrayFishingValueTab extends ReportTab
         NO_NET_ZONES_ID
       ).float('PERCENT', 0)
 
+    scid = @sketchClass.id
+    console.log("scid:: ", scid)
     context =
       sketch: @model.forTemplate()
       sketchClass: @sketchClass.forTemplate()
