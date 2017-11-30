@@ -10,6 +10,8 @@ class FishingValueTab extends ReportTab
   areaLabel: 'protected area'
 
   render: () ->
+    scid = @sketchClass.id
+    console.log("scid:: ", scid)
     context =
       sketch: @model.forTemplate()
       sketchClass: @sketchClass.forTemplate()
